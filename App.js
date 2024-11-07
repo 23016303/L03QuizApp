@@ -1,20 +1,70 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import RNPickerSelect from 'react-native-picker-select';
+import { Alert, Button, Image, ScrollView, Text, TextInput } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const MyApp = () => {
+    const [answers, setAnswers] = React.useState({ Q1: '', Q2: '', Q3: '' });
+    const correctAnswers = { Q1: 'kingfisher', Q2: 'rabbit', Q3: 'owl' };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    const handleAnswerChange = (question, value) => {
+        setAnswers(prevAnswers => ({ ...prevAnswers, [question]: value }));
+    };
+
+    const handleSubmit = () => {
+        let score = 0;
+        Object.keys(correctAnswers).forEach(question => {
+            if (answers[question] === correctAnswers[question]) {
+                score += 1;
+            }
+        });
+        const message =
+            score >= 2
+                ? `You have scored ${score} out of 3! Well Done!`
+                : `You have scored ${score} out of 3! Better luck next time!`;
+        Alert.alert(message);
+    };
+
+    return (
+        <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+            <Text>User Name:</Text>
+            <TextInput style={{ borderWidth: 1, marginBottom: 20 }} />
+
+            <Image source={require('./img/kingfisher.jpg')} style={{width: 400, height: 500, marginBottom: 20 }}/>
+            <Text>Q1) What animal is this?</Text>
+            <RNPickerSelect
+                onValueChange={value => handleAnswerChange('Q1', value)}
+                items={[
+                    { label: 'squirrel', value: 'squirrel' },
+                    { label: 'kingfisher', value: 'kingfisher' },
+                    { label: 'bee', value: 'bee' },
+                ]}
+            />
+
+            <Image source={require('./img/rabbit.jpg')} style={{width: 400, height: 500, marginBottom: 20 }} />
+            <Text>Q2) What animal is this?</Text>
+            <RNPickerSelect
+                onValueChange={value => handleAnswerChange('Q2', value)}
+                items={[
+                    { label: 'rabbit', value: 'rabbit' },
+                    { label: 'tiger', value: 'tiger' },
+                    { label: 'elephant', value: 'elephant' },
+                ]}
+            />
+
+            <Image source={require('./img/owl.jpg')} style={{width: 400, height: 500, marginBottom: 20 }}/>
+            <Text>Q3) What animal is this?</Text>
+            <RNPickerSelect
+                onValueChange={value => handleAnswerChange('Q3', value)}
+                items={[
+                    { label: 'peacock', value: 'peacock' },
+                    { label: 'turtle', value: 'turtle' },
+                    { label: 'owl', value: 'owl' },
+                ]}
+            />
+
+            <Button onPress={handleSubmit} title="Submit" />
+        </ScrollView>
+    );
+};
+
+export default MyApp;
