@@ -1,6 +1,38 @@
 import React from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { Alert, Button, Image, ScrollView, Text, TextInput } from 'react-native';
+import {Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput} from 'react-native';
+
+const styles = StyleSheet.create({
+    username:{
+        fontWeight:'bold',
+        fontSize:30,
+        marginTop:50,
+        backgroundColor: 'plum',
+        borderRadius:10,
+        padding:5,
+        borderWidth:2,
+        borderColor:'#a078e1',
+        textShadowColor:'white',
+        textShadowRadius:10
+    },
+    question:{
+        fontWeight:'bold',
+        fontSize:30,
+        borderRadius:10,
+        borderWidth:2,
+        paddingHorizontal:20,
+        backgroundColor:'teal',
+        color:'white',
+        textShadowColor:'black',
+        textShadowRadius:10
+    },
+    image:{
+        borderRadius:10,
+        borderWidth:2,
+        borderColor:'goldenrod',
+    },
+
+})
 
 const MyApp = () => {
     const [answers, setAnswers] = React.useState({ Q1: '', Q2: '', Q3: '' });
@@ -26,11 +58,11 @@ const MyApp = () => {
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-            <Text>User Name:</Text>
-            <TextInput style={{ borderWidth: 1, marginBottom: 20 }} />
+            <Text style={styles.username}>  User Name:</Text>
+            <TextInput style={{ borderWidth: 1, marginBottom: 20, padding:10}} />
 
-            <Image source={require('./img/kingfisher.jpg')} style={{width: 400, height: 500, marginBottom: 20 }}/>
-            <Text>Q1) What animal is this?</Text>
+            <Image source={require('./img/kingfisher.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
+            <Text style={styles.question}>Q1) What animal is this?</Text>
             <RNPickerSelect
                 onValueChange={value => handleAnswerChange('Q1', value)}
                 items={[
@@ -40,8 +72,8 @@ const MyApp = () => {
                 ]}
             />
 
-            <Image source={require('./img/rabbit.jpg')} style={{width: 400, height: 500, marginBottom: 20 }} />
-            <Text>Q2) What animal is this?</Text>
+            <Image source={require('./img/rabbit.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]} />
+            <Text style={styles.question}>Q2) What animal is this?</Text>
             <RNPickerSelect
                 onValueChange={value => handleAnswerChange('Q2', value)}
                 items={[
@@ -51,8 +83,8 @@ const MyApp = () => {
                 ]}
             />
 
-            <Image source={require('./img/owl.jpg')} style={{width: 400, height: 500, marginBottom: 20 }}/>
-            <Text>Q3) What animal is this?</Text>
+            <Image source={require('./img/owl.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
+            <Text style={styles.question}>Q3) What animal is this?</Text>
             <RNPickerSelect
                 onValueChange={value => handleAnswerChange('Q3', value)}
                 items={[
