@@ -1,6 +1,6 @@
 import React from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import {Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput} from 'react-native';
+import {Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 const styles = StyleSheet.create({
     username:{
@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderColor:'goldenrod',
     },
+    parent:{
+        flex:1,
+        padding:5,
+    }
 
 })
 
@@ -58,44 +62,46 @@ const MyApp = () => {
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-            <Text style={styles.username}>  User Name:</Text>
-            <TextInput style={{ borderWidth: 1, marginBottom: 20, padding:10}} />
+            <View style={styles.parent}>
+                <Text style={styles.username}>  User Name:</Text>
+                <TextInput style={{ borderWidth: 1, marginBottom: 20, padding:10}} />
 
-            <Image source={require('./img/kingfisher.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
-            <Text style={styles.question}>Q1) What animal is this?</Text>
-            <RNPickerSelect
-                onValueChange={value => handleAnswerChange('Q1', value)}
-                items={[
-                    { label: 'squirrel', value: 'squirrel' },
-                    { label: 'kingfisher', value: 'kingfisher' },
-                    { label: 'bee', value: 'bee' },
-                ]}
-            />
+                <Image source={require('./img/kingfisher.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
+                <Text style={styles.question}>Q1) What animal is this?</Text>
+                <RNPickerSelect
+                    onValueChange={value => handleAnswerChange('Q1', value)}
+                    items={[
+                        { label: 'squirrel', value: 'squirrel' },
+                        { label: 'kingfisher', value: 'kingfisher' },
+                        { label: 'bee', value: 'bee' },
+                    ]}
+                />
 
-            <Image source={require('./img/rabbit.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]} />
-            <Text style={styles.question}>Q2) What animal is this?</Text>
-            <RNPickerSelect
-                onValueChange={value => handleAnswerChange('Q2', value)}
-                items={[
-                    { label: 'rabbit', value: 'rabbit' },
-                    { label: 'tiger', value: 'tiger' },
-                    { label: 'elephant', value: 'elephant' },
-                ]}
-            />
+                <Image source={require('./img/rabbit.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]} />
+                <Text style={styles.question}>Q2) What animal is this?</Text>
+                <RNPickerSelect
+                    onValueChange={value => handleAnswerChange('Q2', value)}
+                    items={[
+                        { label: 'rabbit', value: 'rabbit' },
+                        { label: 'tiger', value: 'tiger' },
+                        { label: 'elephant', value: 'elephant' },
+                    ]}
+                />
 
-            <Image source={require('./img/owl.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
-            <Text style={styles.question}>Q3) What animal is this?</Text>
-            <RNPickerSelect
-                onValueChange={value => handleAnswerChange('Q3', value)}
-                items={[
-                    { label: 'peacock', value: 'peacock' },
-                    { label: 'turtle', value: 'turtle' },
-                    { label: 'owl', value: 'owl' },
-                ]}
-            />
+                <Image source={require('./img/owl.jpg')} style={[styles.image,{width: 400, height: 500, marginBottom: 20 }]}/>
+                <Text style={styles.question}>Q3) What animal is this?</Text>
+                <RNPickerSelect
+                    onValueChange={value => handleAnswerChange('Q3', value)}
+                    items={[
+                        { label: 'peacock', value: 'peacock' },
+                        { label: 'turtle', value: 'turtle' },
+                        { label: 'owl', value: 'owl' },
+                    ]}
+                />
 
-            <Button onPress={handleSubmit} title="Submit" />
-        </ScrollView>
+                <Button onPress={handleSubmit} title="Submit" />
+            </View>
+            </ScrollView>
     );
 };
 
