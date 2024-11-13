@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     username:{
         fontWeight:'bold',
         fontSize:30,
-        marginTop:50,
         backgroundColor: 'plum',
         borderRadius:10,
         padding:5,
@@ -34,13 +33,19 @@ const styles = StyleSheet.create({
     parent:{
         flex:1,
         padding:5,
+    },
+    quiz:{
+        fontWeight:'bold',
+        fontSize:50,
+        marginTop:50,
+        alignSelf:'center',
     }
 
 })
 
 const MyApp = () => {
     const [answers, setAnswers] = React.useState({ Q1: '', Q2: '', Q3: '' });
-    const correctAnswers = { Q1: 'kingfisher', Q2: 'rabbit', Q3: 'owl' };
+    const correctAnswers = { Q1: 'Kingfisher', Q2: 'Rabbit', Q3: 'Owl' };
 
     const handleAnswerChange = (question, value) => {
         setAnswers(prevAnswers => ({ ...prevAnswers, [question]: value }));
@@ -63,6 +68,7 @@ const MyApp = () => {
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
             <View style={styles.parent}>
+                <Text style={styles.quiz}>Animal Quiz</Text>
                 <Text style={styles.username}>  User Name:</Text>
                 <TextInput style={{ borderWidth: 1, marginBottom: 20, padding:10}} />
 
@@ -71,9 +77,9 @@ const MyApp = () => {
                 <RNPickerSelect
                     onValueChange={value => handleAnswerChange('Q1', value)}
                     items={[
-                        { label: 'squirrel', value: 'squirrel' },
-                        { label: 'kingfisher', value: 'kingfisher' },
-                        { label: 'bee', value: 'bee' },
+                        { label: 'Squirrel', value: 'Squirrel' },
+                        { label: 'Kingfisher', value: 'Kingfisher' },
+                        { label: 'Bee', value: 'Bee' },
                     ]}
                 />
 
@@ -82,9 +88,9 @@ const MyApp = () => {
                 <RNPickerSelect
                     onValueChange={value => handleAnswerChange('Q2', value)}
                     items={[
-                        { label: 'rabbit', value: 'rabbit' },
-                        { label: 'tiger', value: 'tiger' },
-                        { label: 'elephant', value: 'elephant' },
+                        { label: 'Rabbit', value: 'Rabbit' },
+                        { label: 'Tiger', value: 'Tiger' },
+                        { label: 'Elephant', value: 'Elephant' },
                     ]}
                 />
 
@@ -93,9 +99,9 @@ const MyApp = () => {
                 <RNPickerSelect
                     onValueChange={value => handleAnswerChange('Q3', value)}
                     items={[
-                        { label: 'peacock', value: 'peacock' },
-                        { label: 'turtle', value: 'turtle' },
-                        { label: 'owl', value: 'owl' },
+                        { label: 'Peacock', value: 'Peacock' },
+                        { label: 'Turtle', value: 'Turtle' },
+                        { label: 'Owl', value: 'Owl' },
                     ]}
                 />
 
